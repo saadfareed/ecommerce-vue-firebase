@@ -1,0 +1,67 @@
+[
+    {
+     "id": 1,
+     "name": "airforce1",
+     "category": "Eletronics", 
+     "cost": 200,  
+     "image": "require('@/assets/products/airforce 1.jpg')" 
+    },
+
+    {
+    "id": 2, 
+    "name": "airmax90", 
+    "category": "Eletronics",  
+    "cost": 200,  
+    "image": "require('@/assets/products/airmax90.jpg')"
+    },
+
+    {
+    "id": 3,
+    "name": "barkley",  
+    "category": "men cloth",   
+    "cost": 200,  
+    "image": "require('@/assets/products/barkley.jpg')" 
+    },
+
+    {
+        "id": 4, 
+        "name": "blazer",   
+        "category": "Eletronics",  
+        "cost": 200, 
+        "image": "require('@/assets/products/blazer.jpg')" 
+    },
+
+    {
+    
+    "id": 5, 
+    "name": "dunklow", 
+    "category": "men cloth",   
+    "cost": 200,  
+    "image": "require('@/assets/products/dunk-low.jpg')" 
+    },
+
+    {
+        
+    "id": 6, 
+    "name": "durant",   
+    "category": "Eletronics",  
+    "cost": 200,  
+    "image": "require('@/assets/products/durant.jpg')" 
+   },
+
+    {
+    
+    "id": 7, 
+    "name": "huranche", 
+    "category": "men cloth",  
+    "cost": 200,  
+    "image": "require('@/assets/products/huruanche.jpg')"
+   },
+
+   {
+        "id": 8, 
+        "name": "irving",   
+        "category": "Eletronics",  
+        "cost": 200,  
+        "image": "require('@/assets/products/irving.jpg') "}     
+]
