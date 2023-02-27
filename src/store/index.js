@@ -2,9 +2,6 @@ import { createStore } from "vuex"
 
 //update localstorage when things are added
 
-
-
-
  export default  createStore({
 
   //this method returns all the state that we want to store in this globalized store

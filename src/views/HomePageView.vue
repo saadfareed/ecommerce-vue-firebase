@@ -2,14 +2,23 @@
 
 <div class="container">
   <div class="row"  style="margin-left:-30px; margin-top:20px;">
-      <div class="col-12 col-sm-6 col-md-3 ms-md-3 mb-3 mb-sm-0">
+      <div class="col-12 col-sm-6 col-md-3 ms-md-3 mb-3 mb-sm-0 border">
            <div class="row">
-              <span class="categ-title">All categories <i class="bi bi-list"></i></span>
+              <span class="categ-title w-100">All categories <i class="bi bi-list"></i></span>
             </div>
 
-          <ul style="list-style-type: none;">
-             <li v-for="category,index in  categorys" :key="index"  @click="productcategory(category.category)" >
-                {{ category.category }} </li>
+
+          <ul style="list-style-type: none; font-size: large; ">
+             <li 
+                 v-for="category,index in  categorys" :key="index" 
+                 @click="productcategory(category.category)"
+
+               v-bind:style="{'background-color': itemBackgroundColor(index)}"
+                    @mouseover="setHoverIndex(index)"
+                    @mouseleave="resetHoverIndex"  >
+
+                {{ category.category }} 
+              </li>
           </ul>
       </div>
 
@@ -82,6 +91,7 @@ import {mapMutations,mapState} from "vuex"
 
         data(){
             return {
+              hoverIndex: -1,
               products: [],
               categorys: [],
               selectedcategory: ' ',
@@ -89,6 +99,19 @@ import {mapMutations,mapState} from "vuex"
         },
 
     methods: {
+      setHoverIndex(index) {
+      this.hoverIndex = index
+    },
+    resetHoverIndex() {
+      this.hoverIndex = -1
+    },
+    itemBackgroundColor(index) {
+      if (index === this.hoverIndex) {
+        return 'green'
+      } else {
+        return 'white'
+      }
+    },
 
     ...mapMutations(["addtocart"]),
 
@@ -160,9 +183,9 @@ import {mapMutations,mapState} from "vuex"
 .categ-title{
 text-align: center;  
 background:green; 
-width: 200px;
+/* width: 200px; */
 height:40px;
-font-size:18px; 
+font-size:21px; 
 color:white; 
 margin-bottom: 8px;
 }
