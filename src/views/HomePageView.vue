@@ -1,6 +1,6 @@
 <template>
 
-<div class="container">
+<div class="container"   style="font-family: 'Alata', sans-serif;">
   <div class="row"  style="margin-left:-30px; margin-top:20px;">
       <div class="col-12 col-sm-6 col-md-3 ms-md-3 mb-3 mb-sm-0 border">
            <div class="row">
@@ -8,7 +8,7 @@
             </div>
 
 
-          <ul style="list-style-type: none; font-size: large; ">
+          <ul style="list-style-type: none; margin: 3px;">
              <li 
                  v-for="category,index in  categorys" :key="index" 
                  @click="productcategory(category.category)"
@@ -60,20 +60,23 @@
 
 <div class="container" style="margin-top:70px;">
   <h2 @click="details('12')"> <b> Featured products </b></h2>
+
   <div class="row">
-    <div class="col-md-3 bg-light" v-for="(product, index) in categoryitems" :key="index" >
-      <div class="card mb-3 border" style="max-width: 18rem;" @mouseover="product.hovered = true" @mouseleave="product.hovered = false">
-        <router-link :to="{path : `/details/${product.id}/${product.category}`}">
-          <img :src="product.image" :alt="product.name" class="img-fluid rounded-top"/>  
-        </router-link> 
-        <div class="card-body">
-          <h6 class="card-title">{{ product.name }}</h6>
-          <p class="card-text">{{ product.cost}}</p>
-          <button class="btn btn-primary btn-sm"  @click="addtocart(product)" v-show="product.hovered">Add to cart</button>
-        </div>
+  <div class="col-sm-6 col-md-4 col-lg-3 mb-4" v-for="(product, index) in categoryitems" :key="index">
+    <div class="card border" @mouseover="product.hovered = true" @mouseleave="product.hovered = false">
+      <router-link :to="{path : `/details/${product.id}/${product.category}`}">
+        <img :src="product.image" :alt="product.name" class="card-img-fluid"/>  
+      </router-link> 
+      <div class="card-body">
+        <h6 class="card-title">{{ product.name }}</h6>
+        <p class="card-text">{{ product.cost }}</p>
+        <button class="btn btn-primary btn-sm" @click="addtocart(product)" v-show="product.hovered">Add to cart</button>
       </div>
     </div>
   </div>
+</div>
+
+
 </div>
 
 </template>

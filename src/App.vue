@@ -55,7 +55,7 @@ methods:{
 }
 </script>
 
-<style  scoped>
+<style >
 .navbar {
   background-color: #787878; /* dull gray color */
 }
