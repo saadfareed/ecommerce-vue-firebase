@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
 import {getFirestore, collection} from 'firebase/firestore'
+import {getAuth} from 'firebase/auth'
 
 
 // Your web app's Firebase configuration
@@ -15,8 +16,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 // using Firestore database
 const db = getFirestore(app);
+
 //create products collection
 const productsColRef = collection(db, "products");
 
@@ -24,10 +27,12 @@ const productsColRef = collection(db, "products");
 const categoryColRef = collection(db, "categories");
 
 //create cart collection 
-
 const cartColRef = collection(db, "cartitems");
+
+//using firebase authentication
+const auth = getAuth(app)
  
-export default { productsColRef, categoryColRef, cartColRef };
+export default { auth, productsColRef, categoryColRef, cartColRef };
 
 
 

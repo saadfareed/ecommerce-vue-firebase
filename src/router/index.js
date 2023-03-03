@@ -4,6 +4,8 @@ import CartProductsView from '../views/CartProductsView.vue';
 import ProductDetailsView from '../views/ProductDetailsView.vue';
 import AddproductsView from '../views/AddproductsView.vue';
 import AddcategoryView from '../views/AddcategoryView.vue';
+import LoginView from '../views/LoginView.vue'
+import Registerview from '../views/RegisterView.vue'
 // import FeaturedProductsView from '../views/FeaturedProductsView.vue';
 
 
@@ -13,25 +15,40 @@ const router = createRouter({
     {
       path: '/',
       name: "home",
-      component: HomePageView
+      component: HomePageView,
+      meta: {
+        requiresAuth: true
+      }
     },
 
-    //   {
-    //   path: '/',
-    //   name: "home",
-    //   component: FeaturedProductsView
-    // },
+      {
+      path: '/login',
+      name: "login",
+      component: LoginView
+    },
+
+    {
+      path: '/register',
+      name: "register",
+      component: Registerview
+    },
 
     {
       path: '/cart',
       name: "cart",
-      component: CartProductsView
+      component: CartProductsView,
+      meta: {
+        requiresAuth: true
+      }
     },
 
     {
       path: '/details/:productId/:category',
       name: "details",
-      component: ProductDetailsView
+      component: ProductDetailsView,
+      meta: {
+        requiresAuth: true
+      }
     },
 
     {

@@ -22,10 +22,10 @@
               <RouterLink class="link" active-class="active" to="/" >Home</RouterLink>
             </li>
             <li class="nav-item">
-              <RouterLink class="link" active-class="active" to="/addcateg" >about</RouterLink>
+              <RouterLink class="link" active-class="active" to="/register" >about</RouterLink>
             </li>
             <li class="nav-item">
-            <RouterLink class="link" active-class="active" to="/add">account</RouterLink>
+            <RouterLink class="link" active-class="active" to="/login">account</RouterLink>
             </li>
           </ul>
         </div>

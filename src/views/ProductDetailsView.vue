@@ -1,5 +1,6 @@
 <script>
 import mycollections from '../firebase'
+import { mapMutations } from "vuex"
 import { getDoc, getDocs,  doc} from 'firebase/firestore'
 
 export default {
@@ -33,6 +34,10 @@ export default {
 
     methods: {
 
+      
+    ...mapMutations(["addtocart"]),
+
+
       //get the product with specified id clicked by the user in home page
       async getproduct() {
             let productdata= [];
@@ -59,9 +64,7 @@ export default {
 
 
 
-   addtocart(id){
-            this.$emit('add-to-cart', id);
-        },
+ 
     addcount(){
         this.count +=1;
     },
