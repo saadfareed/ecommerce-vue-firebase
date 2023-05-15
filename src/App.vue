@@ -8,24 +8,28 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto d-flex align-items-center">
 
-          <li class="nav-item">
-              <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
-              </form>
-            </li>
+       
 
             <li class="nav-item">
-              <RouterLink class="link" active-class="active"  to="/cart"> <span> <i class="bi bi-cart"></i> {{ count  }} </span> </RouterLink> 
+               <RouterLink class="link" active-class="active" to="/" >Home</RouterLink>
+
             </li>
             <li class="nav-item">
-              <RouterLink class="link" active-class="active" to="/" >Home</RouterLink>
+              <RouterLink class="link" active-class="active"  to="/cart"><span>cart <i class="bi bi-cart"></i> {{ count  }} </span> </RouterLink> 
+
+
             </li>
+           
             <li class="nav-item">
-              <RouterLink class="link" active-class="active" to="/register" >about</RouterLink>
-            </li>
-            <li class="nav-item">
-            <RouterLink class="link" active-class="active" to="/login">account</RouterLink>
+            <div class="dropdown" style="margin-top: 17px;">
+            <p class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 20px;">{{ isLoggedIn ? name : 'Account' }}</p>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li v-if="isLoggedIn"><a class="dropdown-item" @click="Logout"> sign out </a></li>
+            <li v-if="isLoggedOut"><a class="dropdown-item" @click="Login"> sign in</a></li>
+          </ul>
+    </div>
+
+
             </li>
           </ul>
         </div>
@@ -43,14 +47,51 @@ export default {
   name: 'App',
   components: { },
 
+  data() {
+    return {
+      isLoggedIn: false,
+      isLoggedOut: true,
+
+      name : ''
+    }
+  },
+
 
 computed:{
   ...mapState(["count"])
   },
 
 methods:{
-    addtocart(){ }
-  },  
+    addtocart(){ },
+
+    Logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('isLoggedIn');
+    this.$router.push('/login'); 
+    this.isLoggedIn= false;
+    this.isLoggedOut= true;
+  },
+
+  Login() {
+    this.$router.push('/login'); 
+  }
+
+},
+
+ mounted() {
+
+  if(localStorage) {
+    const username = localStorage.getItem('name')
+        
+      if(username) {
+         this.name=username;
+         this.isLoggedIn = true;
+         this.isLoggedOut = false;
+      }
+
+  }
+ } 
 
 }
 </script>

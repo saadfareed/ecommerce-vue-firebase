@@ -1,57 +1,60 @@
 <template>
 
-<p>{{count }}</p>
 
 <div class="container mt-4 screen-container">
-  <div class="row" style="margin-bottom:4px;">
+  <p>Cart({{count }})</p>
+
+  <div class="row">
+
     <div class="col-12 border col-md-8">
       <div class="row" v-for="(cartitems, index) in cart" :key="index">
-        <div class="col-3 col-sm-3 col-md-3 mb-1">
-          <img :src="cartitems.image" :alt="cartitems.name" class="img-fluid img-crt" />
+        
+        <div class="col-3 col-sm-3 col-md-3" >
+          <img :src="cartitems.image" :alt="cartitems.name" class="img-fluid img-crt" style="height: 100px;" />
         </div>
-        <div class="col-7 col-sm-7 col-md-7 mb-4">
-          <h5 class="mt-4">{{ cartitems.name }}</h5>
+        <div class="col-6 col-sm-6 col-md-6" style="margin-top: 20px;">
+          <small class="mt-4" style="font-family: 'Nunito', sans-serif;">{{ cartitems.title }}</small>
           
           <button class="btn btn-warning btn-sm d-flex align-items-center mt-4" @click="removecart(index)">
             <i class="bi bi-trash"></i> Remove
           </button>
 
         </div>
-
-        <div class="col-2 col-sm-2 col-md-2 mb-4">
-          <h5 class="mt-4">{{ cartitems.cost }} KES</h5>
+        <div class="col-2 col-sm-2 col-md-2" style="margin-left: 30px">
+          <span class="mt-4">{{ cartitems.cost }} KES</span>
 
            <div class="d-flex align-items-center mt-4">
             <button class="btn btn-light  mr-2" @click="addcount">+</button>
-            <span>{{ count }}</span>
+            <span>{{ itemsCount }}</span>
             <button class="btn btn-light  ml-2" @click="reducecount">-</button>
           </div>
         </div>
            <hr>
-
-      </div>
+    </div>
 
     </div>
-    <div class="col-12 col-md-3 border" style="margin-left:10px; padding: 20px;">
+    <div class="col-12 col-md-3" style="margin-left:10px;">
       <h6><b>CART SUMMARY</b></h6>
-      <hr style="width:100%;">
-      <h6>Sub Total: {{ getTotalcost() }} KES</h6>
-      <p class="mt-4">Delivery fee not included</p>
+      <!-- <hr style="width:100%;"> -->
+
+      <div class="border" style="padding: 10px;">
+
+      <h6 style="font-family: 'Nunito', sans-serif;">Sub Total:  <span style="margin-left: 30px;"> {{ getTotalcost() }} KES </span> </h6>
+      <p class="mt-4" >Delivery fee not included</p>
       <h5 class="mt-4">Pay via M-PESA</h5>
       <form @submit.prevent="paynow">
         <div class="form-group">
           <input type="text" v-model="phone" class="form-control" placeholder="Enter M-PESA phone number">
         </div>
-        <button class="btn btn-primary btn-block mt-3">Pay</button>
+        <button class="btn btn-primary mt-3" style="margin-left: 20%; width: 60%;">Pay</button>
       </form>
+    </div>
     </div>
   </div>
 </div>
 
 
 
-
-    
 </template>
 
 <script>
@@ -72,6 +75,7 @@ export default {
         return{
             cartitems: [],
             totalcost:'',
+            itemsCount: 1
             }
 
         },  
@@ -103,6 +107,9 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Montserrat:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 
 .img-crt{
  max-width: 100%;

@@ -2,32 +2,32 @@
 
 
 <div class="container border mt-3">
-<h5 class="text-center">Register account</h5>
+<h5 class="text-center mt-3">Register account</h5>
   <div class="row">
     <div class="col-md-6 offset-md-3">
 
-        <form class="row g-3 needs-validation" @submit.prevent="register">
+        <form class="row g-3 needs-validation" @submit.prevent="Register">
 
-          <!-- <div class="col-md-12">
+          <div class="col-md-12">
             <label for="validationCustom01" class="form-label">Username</label>
                 <input type="text" 
                        class="form-control" 
                        id="validationCustom01" 
-                       required v-model="registerform.username">
-          </div> <br> -->
+                       required v-model="postdata.name">
+          </div> <br>
         
           <div class="col-md-12">
             <label for="validationCustomUsername" class="form-label">Email</label>
               <input type="email" 
                    class="form-control" 
-                          required v-model="email">             
+                          required  v-model="postdata.email">             
           </div> <br>
 
           <div class="col-md-12">
             <label for="validationCustom03" class="form-label">password</label>
                <input type="password" 
                  class="form-control" 
-                        required v-model="password">
+                        required v-model="postdata.password">
           </div> <br>
         
           <div class="col-12">
@@ -38,7 +38,7 @@
           </div>
 
           <div class="col-12">
-            <button class="btn btn-primary" type="submit">Register</button>
+            <button class="btn btn-primary mb-4" style="width: 250px; margin-left: 20%;" type="submit">Register</button>
           </div>
         </form>
 
@@ -47,29 +47,60 @@
 </div>
     
 </template>
+<script >
+  
+ 
+import axios from '@/axios';
 
-<script>
-import { useStore } from 'vuex';
-import {ref} from 'vue'
-  export default {
-    setup() {
 
-        const store = useStore();
-        const register_form =ref({});
+export default {
+    name: 'RegisterView',
+    components: {},
 
-        const register = () => {
-            store.dispatch('register', register_form.value);
-        }
+    data() {
+      return {
 
-        return {
-            register_form,
-            register
-        }
+        postdata: {
+             name:'',
+             email:'',
+             password: '',
+    }
         
+      }
     },
+
+    methods: {
+
+Register() {
+
+console.log(this.postdata);
+
+axios.register({
+  name: this.postdata.name,
+ email: this.postdata.email,
+ password: this.postdata.password,   
+})
+
+.then(response => {
+const token = response.token;
+const name = response.user.name;
+
+localStorage.setItem('token', token);
+localStorage.setItem('name', name);
+localStorage.setItem('isLoggedIn', true);
+// console.log(name); 
+this.$router.push('/'); 
+})
+.catch(error => {
+console.log(error);
+});
+},
+
 }
-</script>
-
-<style scoped>
-
-</style>
+}
+  
+  </script>
+  
+  <style>
+  
+  </style>

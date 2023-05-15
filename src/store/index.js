@@ -1,6 +1,4 @@
 import { createStore } from "vuex"
-import { auth } from '../firebase'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth"
 
  export default  createStore({
 
@@ -43,68 +41,68 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } f
   actions: {
 
 //login a user to your system
-  async login ({commit}, details) {
-        const  { email, password } = details
-        try{
-          await signInWithEmailAndPassword(auth, email, password)
-        }
-        catch(error){
-          switch(error.code){
-            case 'auth/user-not-found':
-              alert("user not found")
-              break;
-            case 'auth/wrong-password':
-              alert("wrong password")
-              break;
-            default:
-              alert(error.message);  
-              console.log(error.message)
-          }
-        return;
-        }
-        commit('SET_USER', auth.currentUser)
-         this.$router.push('/');
-    },
+  // async login ({commit}, details) {
+  //       const  { email, password } = details
+  //       try{
+  //         await signInWithEmailAndPassword(auth, email, password)
+  //       }
+  //       catch(error){
+  //         switch(error.code){
+  //           case 'auth/user-not-found':
+  //             alert("user not found")
+  //             break;
+  //           case 'auth/wrong-password':
+  //             alert("wrong password")
+  //             break;
+  //           default:
+  //             alert(error.message);  
+  //             console.log(error.message)
+  //         }
+  //       return;
+  //       }
+  //       commit('SET_USER', auth.currentUser)
+  //        this.$router.push('/');
+  //   },
 
 
   //register a user to the system
-  async register ({commit}, details) {
-        const  { email, password } = details
-        try{
-          await createUserWithEmailAndPassword(auth, email, password)
-        }
-        catch(error){
-          switch(error.code){
-            case 'auth/email-already-in-use':
-              alert("email already in use")
-              break;
-              case 'auth/invalid-email':
-                alert("Invalid email")
-              break;
-              case 'auth/operation-not-allowed':
-                alert("operation not allowed")
-              break;
-              case 'auth/weak-password':
-                alert("Weak password")
-              break;
-              default:
-                alert(error.message);  
-                console.log(error.message)
+  // async register ({commit}, details) {
+  //       const  { email, password } = details
+  //       try{
+  //         await createUserWithEmailAndPassword(auth, email, password)
+  //       }
+  //       catch(error){
+  //         switch(error.code){
+  //           case 'auth/email-already-in-use':
+  //             alert("email already in use")
+  //             break;
+  //             case 'auth/invalid-email':
+  //               alert("Invalid email")
+  //             break;
+  //             case 'auth/operation-not-allowed':
+  //               alert("operation not allowed")
+  //             break;
+  //             case 'auth/weak-password':
+  //               alert("Weak password")
+  //             break;
+  //             default:
+  //               alert(error.message);  
+  //               console.log(error.message)
 
-          }
-        return;
-        }
-        commit('SET_USER', auth.currentUser)
-        this.$router.push('/');
-      },
+  //         }
+  //       return;
+  //       }
+  //       commit('SET_USER', auth.currentUser)
+  //       this.$router.push('/');
+  //     },
 
-  //logout user from the user
-  async logout ({ commit }) {
+  // logout user from the user
+  // async logout ({ commit }) {
 
-    await(signOut(auth))
-    commit('CLEAR_USER')
-    this.$router.push('/login');
-      }
+  //   await(signOut(auth))
+  //   commit('CLEAR_USER')
+  //   this.$router.push('/login');
+  //     }
 
      } 
  })
